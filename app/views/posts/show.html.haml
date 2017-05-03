@@ -1,0 +1,12 @@
+.post-content
+  %h2= @post.title
+  %p= @post.rendered_text
+
+.mt-50
+  - if !@post.unlisted
+    %p
+      %strong more by this author:
+
+    - @post.author.listed_posts.each do |tied_post|
+      %a.block{"href" => "/tied_post.url"}
+        = tied_post.title

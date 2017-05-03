@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listed</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <div id="main-container">
+      <!-- <% if !@hide_header %>
+        <%= render "shared/header" %>
+      <% end %> -->
+      <div id="content-container">
+        <%= yield %>
+      </div>
+      <%= render "shared/footer" %>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,58 @@
+.days {
+  // margin-top: 50px;
+}
+
+.posts-links {
+  .link {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 16px;
+  }
+}
+
+.post-content {
+  margin-top: 20px;
+  clear: both;
+  font-size: 18px;
+  line-height: 1.6;
+  text-align: left;
+  font-weight: normal;
+  color: black;
+  position: relative;
+  overflow: visible;
+
+  pre {
+    font-family: Consolas,monaco,"Ubuntu Mono",courier,monospace!important;
+    padding: 16px;
+    overflow: auto;
+    font-size: 90%;
+    line-height: 1.45;
+    background-color: #f7f7f7;
+    border-radius: 3px;
+  }
+
+  p code {
+    font-family: Consolas,monaco,"Ubuntu Mono",courier,monospace!important;
+    font-size: .75rem;
+    line-height: .75rem;
+    color: #c25;
+    padding: 4px 8px;
+    background-color: #f7f7f9;
+    border: 1px solid #e1e1e8;
+    border-radius: 3px;
+  }
+
+  img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 120%;
+    margin: 0px -10%;
+    margin-top: 30px;
+  }
+
+  a {
+    text-decoration: underline !important;
+  }
+}
