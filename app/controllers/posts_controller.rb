@@ -6,6 +6,10 @@ class PostsController < ApplicationController
     if !@post
       not_found
     end
+
+    if !@post.unlisted
+      @author_posts = @post.author.listed_posts(@post)
+    end
   end
 
   def index

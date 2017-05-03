@@ -3,10 +3,11 @@
   %p= @post.rendered_text
 
 .mt-50
-  - if !@post.unlisted
+  - if @author_posts
     %p
       %strong more by this author:
 
-    - @post.author.listed_posts.each do |tied_post|
-      %a.block{"href" => "/tied_post.url"}
-        = tied_post.title
+    - @author_posts.each do |tied_post|
+      %strong
+        %a.block{"href" => "#{tied_post.url}"}
+          = tied_post.title
