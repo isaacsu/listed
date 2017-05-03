@@ -1,8 +1,32 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Listed</title>
     <%= csrf_meta_tags %>
+
+    <% if @post %>
+      <% @title = @post.title %>
+      <% @desc = @post.text.slice(0, 200) + "..." %>
+    <% else %>
+      <% @title = "Listed" %>
+      <% @desc = "Published by the Standard Notes community"%>
+    <% end %>
+
+    <title><%= @title %></title>
+    <meta content="<%= @desc %>" name="description"/>
+
+    <!-- Apple -->
+    <meta content="<%= @title %>" name="apple-mobile-web-app-title"/>
+    <meta content="<%= @title %>" name="application-name"/>
+
+    <!-- Twitter -->
+    <meta content="<%= @desc %>" name="twitter:description"/>
+    <meta content="<%= @title %>" name="twitter:title"/>
+    <meta content="@standardnotes" name="twitter:site"/>
+    <meta content="summary" name="twitter:card"/>
+
+    <!-- Facebook -->
+    <meta content="<%= @title %>" name="og:title"/>
+    <meta content="<%= @title %>" name="og:description"/>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
