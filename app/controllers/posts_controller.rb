@@ -40,11 +40,17 @@ class PostsController < ApplicationController
     post.title = content["title"]
     post.text = content["text"]
 
+    if params[:unlisted] == "true"
+      post.unlisted = true
+    else
+      post.unlisted = false
+    end
+
     post.save
   end
 
   def post_params
-    params.permit(:unlisted, :item_uuid)
+    params.permit(:item_uuid)
   end
 
 end
