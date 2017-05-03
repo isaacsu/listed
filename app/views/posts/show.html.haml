@@ -3,7 +3,7 @@
   %p= @post.rendered_text
 
 .mt-50
-  - if @author_posts
+  - if @author_posts.length > 0
     %p
       %strong more by this author:
 
