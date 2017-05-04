@@ -31,14 +31,16 @@ class AuthorsController < ApplicationController
           :url => "#{ENV['HOST']}/authors/#{@author.id}/posts/?secret=#{secret}&item_uuid=#{item_uuid}",
           :verb => "post",
           :context => "Item",
-          :content_types => ["Note"]
+          :content_types => ["Note"],
+          :access_type => "decrypted"
         },
         {
           :label => "Publish Unlisted",
           :url => "#{ENV['HOST']}/authors/#{@author.id}/posts/?unlisted=true&secret=#{secret}&item_uuid=#{item_uuid}",
           :verb => "post",
           :context => "Item",
-          :content_types => ["Note"]
+          :content_types => ["Note"],
+          :access_type => "decrypted"
         }
       ]
     end
@@ -55,7 +57,8 @@ class AuthorsController < ApplicationController
       })
     end
 
-    render :json => {:name => name, :supported_types => supported_types, :actions => actions}
+    description = "Publishes to listed.standardnotes.org. Requires decrypted access to publishing note."
+    render :json => {:name => name, :description => description, :supported_types => supported_types, :actions => actions}
   end
 
 end

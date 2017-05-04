@@ -18,7 +18,7 @@ class PostsController < ApplicationController
     posts.group_by{|x| x.created_at.strftime("%B %e, %Y")}.each do |day, posts|
       days.push({:day => day, :posts => posts.reverse})
     end
-    @days = days
+    @days = days.reverse
   end
 
   def create
