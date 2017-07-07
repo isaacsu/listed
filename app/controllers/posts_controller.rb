@@ -49,6 +49,21 @@ class PostsController < ApplicationController
     post.save
   end
 
+  def unpublish
+    if !@author
+      render :json => {:error => "Unable to load extension."}
+      return
+    end
+
+    post = Post.find(params[:id])
+    if post.author != @author
+      render :json => {:error => "Unauthorized"}
+      return
+    end
+
+    post.delete
+  end
+
   def post_params
     params.permit(:item_uuid)
   end
