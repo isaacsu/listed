@@ -6,9 +6,9 @@
     <% if @post %>
       <% @title = @post.title %>
       <% @desc = @post.text.slice(0, 200) + "..." %>
-    <% else %>
+    <% elsif !@title && !@desc %>
       <% @title = "Listed" %>
-      <% @desc = "Published by the Standard Notes community."%>
+      <% @desc = "Via Standard Notes."%>
     <% end %>
 
     <title><%= @title %></title>

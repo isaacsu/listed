@@ -1,13 +1,17 @@
-.post-content
-  %h2= @post.title
-  %p= @post.rendered_text
+#single-post-show
+  = render "posts/post", :post => @post
 
-.mt-50
-  - if @author_posts && @author_posts.length > 0
-    %p
-      %strong more by this author:
 
-    - @author_posts.each do |tied_post|
-      %strong
-        %a.block{"href" => "#{tied_post.url}"}
-          = tied_post.title
+  - if !@post.unlisted
+    %hr
+    #single-post-footer
+      %p
+        More from
+        %a.author-name{"href" => "/@#{@post.author.username}"}
+          = @post.author.title + ":"
+        .posts
+          - if @author_posts && @author_posts.length > 0
+            - @author_posts.each do |tied_post|
+              %strong
+                %a.block{"href" => "#{tied_post.url}"}
+                  = tied_post.title

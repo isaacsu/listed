@@ -1,0 +1,7 @@
+.post-content
+  - if post.unlisted
+    %h2= post.title
+  - else
+    %h2= link_to post.title, post.path
+  %i=post.created_at.strftime("%B %e, %Y")
+  %p= post.rendered_text

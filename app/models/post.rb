@@ -30,4 +30,8 @@ class Post < ApplicationRecord
 
     return markdown.render(self.text).html_safe
   end
+
+  def path
+    "/@#{author.username}/#{self.id}/#{self.title.parameterize}"
+  end
 end

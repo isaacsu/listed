@@ -1,7 +1,16 @@
 class PostsController < ApplicationController
 
   def show
-    @post = Post.find_by_token(params[:post_token])
+    if params[:id]
+      @post = Post.find(params[:id])
+      if @post.unlisted == true
+        not_found
+        return
+      end
+    else
+      @post = Post.find_by_token(params[:post_token])
+    end
+
     @hide_header = true
     if !@post
       not_found
@@ -65,7 +74,7 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.permit(:item_uuid)
+    params.permit(:item_uuid, :slug, :username)
   end
 
 end

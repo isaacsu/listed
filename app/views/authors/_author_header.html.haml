@@ -1,0 +1,13 @@
+#author-header
+  %h2.name
+
+    %a{"href" => "/@#{author.username}"}
+      = author.display_name
+
+  -if !condensed
+    %p.username= "@" + author.username
+
+  %p.bio= author.bio
+
+  -if !condensed
+    %a.link{"href" => "#{author.link}"}= author.link

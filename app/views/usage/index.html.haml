@@ -1,14 +1,15 @@
-%p to use:
-
-- if !@secret_url
-  generate
-  %a{"href" => "https://standardnotes.org", "target" => "_blank"} Standard Notes
-  extension url:
-  = form_tag({controller: "authors", action: "create"}, method: "post")
-  %button.black.mt-10{"type" => "submit"} generate author url
-- else
-  %p
-    install in
-    %a{"href" => "https://standardnotes.org", "target" => "_blank"} Standard Notes
-    via extension author url:
-  .wrap= @secret_url
+.mt-50
+  %h2 Listed
+  .mt-20
+    - if !@secret_url
+      Generate a
+      %a{"href" => "https://standardnotes.org", "target" => "_blank"} Standard Notes
+      extension url to get started:
+      = form_tag({controller: "authors", action: "create"}, method: "post")
+      %button.black.mt-10{"type" => "submit"} Generate Author Url
+    - else
+      %p
+        install in
+        %a{"href" => "https://standardnotes.org", "target" => "_blank"} Standard Notes
+        via extension author url:
+      .wrap= @secret_url

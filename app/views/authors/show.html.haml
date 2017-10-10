@@ -1,0 +1,9 @@
+#author-profile
+  = render "authors/author_header", :author => @author, :condensed => false
+
+  %hr.left
+
+  #author-posts
+    - @author.listed_posts(nil).each do |post|
+      .author-post
+        = render "posts/post", :post => post
