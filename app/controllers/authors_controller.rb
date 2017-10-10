@@ -19,8 +19,9 @@ class AuthorsController < ApplicationController
     if !@author
       not_found
     end
-    
+
     @title = "#{@author.title} — Listed"
+    @desc = author.bio || "Via Standard Notes."
 
   end
 
