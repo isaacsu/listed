@@ -1,6 +1,6 @@
 class Author < ApplicationRecord
 
-  validates :username, uniqueness: true
+  validates :username, uniqueness: true, :allow_nil => true
 
   has_many :posts
 
