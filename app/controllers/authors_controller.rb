@@ -21,7 +21,7 @@ class AuthorsController < ApplicationController
     end
 
     @title = "#{@author.title} — Listed"
-    @desc = author.bio || "Via Standard Notes."
+    @desc = @author.bio || "Via Standard Notes."
 
   end
 
