@@ -45,6 +45,15 @@ Rails.application.configure do
   # Suppress logger output for asset requests.
   config.assets.quiet = true
 
+  # config.active_job.queue_adapter = :inline
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+
+  config.action_mailer.smtp_settings = {
+    :address => ENV['SMTP_HOST'],
+    :port => ENV['SMTP_PORT'],
+  }
+
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 

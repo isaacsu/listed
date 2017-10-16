@@ -11,3 +11,6 @@
 
   -if !condensed
     %a.link{"href" => "#{author.link}", "target" => "_blank"}= author.link
+
+  #subscription-form
+    = render "subscription_form", :author => author

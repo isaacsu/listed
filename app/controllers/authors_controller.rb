@@ -1,5 +1,14 @@
 class AuthorsController < ApplicationController
 
+  before_action {
+    if params[:id]
+      @display_author = Author.find(params[:id])
+    elsif request.path.include? "@"
+      username = request.path.gsub("/@", "")
+      @display_author = Author.find_by_username(username)
+    end
+  }
+
   def create
     @author = Author.new
     secret = EncryptionHelper.generate_random_key
@@ -9,20 +18,26 @@ class AuthorsController < ApplicationController
   end
 
   def show
-    if params[:id]
-      @author = Author.find(params[:id])
-    else
-      username = request.path.gsub("/@", "")
-      @author = Author.find_by_username(username)
-    end
-
-    if !@author
+    if !@display_author
       not_found
     end
 
-    @title = "#{@author.title} — Listed"
-    @desc = @author.bio || "Via Standard Notes."
+    @title = "#{@display_author.title}"
+    @desc = @display_author.bio || "Via Standard Notes."
 
+  end
+
+  def subscribe
+    email = params[:email]
+    @subscriber = Subscriber.find_or_create_by(email: email)
+    session[:subscriber_id] = @subscriber.id
+    subscription = Subscription.new author: @display_author, subscriber: @subscriber
+    subscription.save
+
+    SubscriptionMailer.confirm_subscription(subscription).deliver_later
+
+    flash[:subscription_success] = true
+    redirect_back(fallback_location: author_url(@display_author))
   end
 
   def redirect_to_authenticated_usage(author, secret)
@@ -110,6 +125,7 @@ class AuthorsController < ApplicationController
     @author.display_name = a_params[:display_name]
     @author.bio = a_params[:bio]
     @author.link = a_params[:link]
+    @author.email = a_params[:email]
     if @author.save
       redirect_to "/@#{@author.username}"
     else
@@ -120,7 +136,7 @@ class AuthorsController < ApplicationController
   private
 
   def a_params
-    params.require(:author).permit(:username, :display_name, :bio, :link, :secret)
+    params.require(:author).permit(:username, :display_name, :bio, :link, :email, :secret)
   end
 
 end

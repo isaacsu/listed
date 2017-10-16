@@ -38,8 +38,10 @@ class PostsController < ApplicationController
     end
 
     if !post
+      is_new = true
       post = @author.posts.new(post_params)
     else
+      is_new = false
       post.update(post_params)
     end
 
@@ -56,6 +58,14 @@ class PostsController < ApplicationController
     end
 
     post.save
+
+    if is_new
+      @author.subscriptions.each do |subscription|
+        if subscription.verified == true
+          SubscriptionMailer.new_post(post, subscription.subscriber).deliver_later
+        end
+      end
+    end
   end
 
   def unpublish

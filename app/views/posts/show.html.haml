@@ -5,7 +5,9 @@
   - if !@post.unlisted
     %hr
     #single-post-footer
-      %p
+      #subscription-form.centered
+        = render "authors/subscription_form", :author => @post.author
+      %p.mt-30
         More from
         %a.author-name{"href" => "/@#{@post.author.username}"}
           = @post.author.title + ":"
