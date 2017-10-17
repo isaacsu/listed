@@ -7,6 +7,8 @@ class AuthorsController < ApplicationController
       username = request.path.gsub("/@", "")
       @display_author = Author.find_by_username(username)
     end
+
+    set_meta_images_for_author(@display_author)
   }
 
   def create
@@ -24,7 +26,6 @@ class AuthorsController < ApplicationController
 
     @title = "#{@display_author.title}"
     @desc = @display_author.bio || "Via Standard Notes."
-
   end
 
   def subscribe

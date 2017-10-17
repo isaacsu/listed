@@ -19,6 +19,8 @@ class PostsController < ApplicationController
     if !@post.unlisted
       @author_posts = @post.author.listed_posts(@post)
     end
+
+    set_meta_images_for_author(@post.author)
   end
 
   def index

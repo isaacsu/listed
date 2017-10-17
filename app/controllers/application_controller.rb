@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
     if(session[:subscriber_id])
       @subscriber = Subscriber.find_by_id(session[:subscriber_id])
     end
-    
+
     if params[:secret]
       author_id = params[:author_id] || params[:id]
       if author_id
@@ -16,6 +16,13 @@ class ApplicationController < ActionController::Base
       end
     end
   }
+
+  def set_meta_images_for_author(author)
+    return if author == nil
+    first_letter = author.title[0].capitalize
+    @meta_image = "https://s3.amazonaws.com/sn-listed/letters/big/#{first_letter}.png"
+    @fav_icon = "https://s3.amazonaws.com/sn-listed/letters/fav/#{first_letter}.png"
+  end
 
 
   def not_found
