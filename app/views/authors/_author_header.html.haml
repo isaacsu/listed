@@ -1,16 +1,18 @@
 #author-header
-  %h2.name
+  .left
+    %h2.name
+      %a{"href" => "/@#{author.username}"}
+        = author.display_name
 
-    %a{"href" => "/@#{author.username}"}
-      = author.display_name
+    -if !condensed
+      %p.username= author.handle
 
-  -if !condensed
-    %p.username= author.handle
+    %p.bio= author.bio
 
-  %p.bio= author.bio
+    -if !condensed && !post_header
+      %a.link{"href" => "#{author.link}", "target" => "_blank"}= author.link
 
-  -if !condensed
-    %a.link{"href" => "#{author.link}", "target" => "_blank"}= author.link
-
-  #subscription-form
-    = render "subscription_form", :author => author
+  .right
+    - if !post_header
+      #subscription-form
+        = render "authors/subscription_form", :author => author

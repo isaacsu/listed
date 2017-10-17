@@ -1,6 +1,7 @@
 #single-post-show
-  = render "posts/post", :post => @post
-
+  = render "authors/author_header", :author => @post.author, :post_header => true, :condensed => false
+  .mt-40
+    = render "posts/post", :post => @post
 
   - if !@post.unlisted
     %hr

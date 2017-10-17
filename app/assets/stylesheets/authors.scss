@@ -26,6 +26,10 @@
 }
 
 #author-header {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
   h2 {
     padding-top: 0;
     padding-bottom: 0;
