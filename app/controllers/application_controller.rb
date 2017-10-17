@@ -20,6 +20,9 @@ class ApplicationController < ActionController::Base
   def set_meta_images_for_author(author)
     return if author == nil
     first_letter = author.title[0].capitalize
+    if first_letter == "@" && author.title.length > 1
+      first_letter = author.title[1].capitalize
+    end
     @meta_image = "https://s3.amazonaws.com/sn-listed/letters/big/#{first_letter}.png"
     @fav_icon = "https://s3.amazonaws.com/sn-listed/letters/fav/#{first_letter}.png"
   end
