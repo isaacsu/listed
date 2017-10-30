@@ -1,7 +1,15 @@
 %p A blog you're subscribed to, #{@post.author.title}, published a new post:
 
-%p
-  %strong #{@post.title}
-%p #{@post.rendered_text[0, 500] + "..."}
+%h3
+  #{@post.title}
+.post-content
+  %p #{@post.rendered_text[0, 500] + "..."}
 
-%a{"href" => "#{@post_url}"} Read More
+  %a{"href" => "#{@post_url}"} Continue Reading
+
+%hr
+
+- if @weekly_link
+  %a{"href" => "#{@weekly_url}"} Switch to Weekly Emails
+
+%a{"href=" => "#{@unsubscribe_url}"} Unsubscribe

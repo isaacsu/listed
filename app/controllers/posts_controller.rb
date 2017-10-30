@@ -63,7 +63,7 @@ class PostsController < ApplicationController
 
     if is_new
       @author.subscriptions.each do |subscription|
-        if subscription.verified == true
+        if subscription.verified == true && subscription.frequency == 'daily' && subscription.unsubscribed == false
           SubscriptionMailer.new_post(post, subscription.subscriber).deliver_later
         end
       end

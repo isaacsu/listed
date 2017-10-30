@@ -9,6 +9,11 @@ class SubscriptionMailer < ApplicationMailer
 
   def new_post(post, subscriber)
     @post = post
+    subscription = subscriber.subscription_for_author(post.author)
+    @unsubscribe_url = "#{ENV['HOST']}/subscriptions/#{subscription.id}/unsubscribe?t=#{subscription.token}"
+    if subscription.frequency == "daily"
+      @weekly_url = "#{ENV['HOST']}/subscriptions/#{subscription.id}/update_frequency?f=weekly&t=#{subscription.token}"
+    end
     @post_url = "#{ENV['HOST']}#{post.path}"
     mail(to: subscriber.email, subject: "#{post.author.title} published a new post: #{post.title}")
   end
@@ -16,6 +21,12 @@ class SubscriptionMailer < ApplicationMailer
   def new_subscription(subscription)
     @author = subscription.author
     mail(to: subscription.author.email, subject: "New subscriber to #{subscription.author.title}")
+  end
+
+  def weekly_digest(subscription)
+    @posts = subscription.author.posts.where("created_at > ?", subscription.last_mailing)
+    @unsubscribe_url = "#{ENV['HOST']}/subscriptions/#{subscription.id}/unsubscribe?t=#{subscription.token}"
+    mail(to: subscription.subscriber.email, subject: "New posts from #{subscription.author.title}")
   end
 
 end

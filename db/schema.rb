@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171016222312) do
+ActiveRecord::Schema.define(version: 20171030232158) do
 
   create_table "authors", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "secret"
@@ -41,10 +41,13 @@ ActiveRecord::Schema.define(version: 20171016222312) do
   end
 
   create_table "subscriptions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer "author_id"
-    t.integer "subscriber_id"
-    t.string  "token"
-    t.boolean "verified"
+    t.integer  "author_id"
+    t.integer  "subscriber_id"
+    t.string   "token"
+    t.boolean  "verified"
+    t.string   "frequency",     default: "daily"
+    t.datetime "last_mailing"
+    t.boolean  "unsubscribed",  default: false
     t.index ["author_id"], name: "index_subscriptions_on_author_id", using: :btree
     t.index ["subscriber_id"], name: "index_subscriptions_on_subscriber_id", using: :btree
   end

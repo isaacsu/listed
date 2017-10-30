@@ -15,6 +15,8 @@ Rails.application.routes.draw do
 
   resources :subscriptions do
     get "confirm", :as => "subscriptions_confirm"
+    get "unsubscribe", :as => "subscription_unsubscribe"
+    get "update_frequency", :as => "subscription_update_frequency"
   end
 
   get "/usage" => "usage#index"

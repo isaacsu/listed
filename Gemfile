@@ -23,6 +23,8 @@ gem 'dotenv-rails', '~> 2.1.1'
 
 gem 'haml-rails'
 
+gem 'whenever'
+
 gem 'redcarpet'
 
 gem 'rack-cors', :require => 'rack/cors'
