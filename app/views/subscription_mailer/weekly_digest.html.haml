@@ -1,13 +1,14 @@
-%p #{@post.author.title} published some new posts this week:
+%p #{@author.title} published some new posts this week:
 
 - @posts.each do |post|
-  %h3
-    #{post.title}
-  .post-content
-    %p #{post.rendered_text[0, 500] + "..."}
+  .post
+    %h3
+      #{post.title}
+    .post-content
+      %p #{post.rendered_text[0, 500] + "..."}
 
-    %a{"href" => "#{post_url}"} Continue Reading
+      %a{"href" => "#{ENV['HOST']}#{post.path}"} Continue Reading
 
 %hr
 
-%a{"href=" => "#{@unsubscribe_url}"} Unsubscribe
+%a{"href" => "#{@unsubscribe_url}"} Unsubscribe

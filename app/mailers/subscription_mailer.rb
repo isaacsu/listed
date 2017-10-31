@@ -24,6 +24,7 @@ class SubscriptionMailer < ApplicationMailer
   end
 
   def weekly_digest(subscription)
+    @author = subscription.author
     @posts = subscription.author.posts.where("created_at > ?", subscription.last_mailing)
     @unsubscribe_url = "#{ENV['HOST']}/subscriptions/#{subscription.id}/unsubscribe?t=#{subscription.token}"
     mail(to: subscription.subscriber.email, subject: "New posts from #{subscription.author.title}")

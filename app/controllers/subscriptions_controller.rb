@@ -30,6 +30,7 @@ class SubscriptionsController < ApplicationController
     @subscription = Subscription.find_by_token(params[:t])
     if @subscription
       @subscription.frequency = params[:f]
+      @subscription.last_mailing = DateTime.now
       @subscription.save
     else
       @error = true
