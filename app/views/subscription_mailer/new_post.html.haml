@@ -1,11 +1,17 @@
-%p A blog you're subscribed to, #{@post.author.title}, published a new post:
+%p
+  A blog you're subscribed to,
+  %a.unstyled{"href" => "#{@post.author.url}"} #{@post.author.title},
+  published a new post:
 
 %h3
-  #{@post.title}
+  %a.unstyled{"href" => "#{@post_url}"}
+    #{@post.title}
 .post-content
-  %p #{@post.rendered_text[0, 500] + "..."}
+  %p #{@post.rendered_text[0, 2000] + "..."}
 
-  %a{"href" => "#{@post_url}"} Continue Reading
+.post-content
+  %p
+    %a{"href" => "#{@post_url}"} Continue Reading
 
 %hr
 
