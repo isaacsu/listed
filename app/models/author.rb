@@ -26,4 +26,8 @@ class Author < ApplicationRecord
     "@#{self.username}"
   end
 
+  def url
+    "#{ENV['HOST']}/@#{self.username}"
+  end
+
 end

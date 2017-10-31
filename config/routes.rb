@@ -21,6 +21,7 @@ Rails.application.routes.draw do
 
   get "/usage" => "usage#index"
 
+  get ':username/feed' => 'authors#feed', :format => 'rss', :constraints => {:username => /@.*/}
   get ':username/:id/:slug' => 'posts#show', :constraints => {:username => /@.*/}, as: 'slugged_post'
   get ':username' => 'authors#show', :constraints => {:username => /@.*/}
 

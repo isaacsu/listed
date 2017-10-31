@@ -35,6 +35,10 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
+    <% if @display_author %>
+      <%= auto_discovery_link_tag( :rss, @display_author.url + "/feed.rss" ) %>
+    <% end %>
+
     <!-- Piwik -->
     <script type="text/javascript">
       var _paq = _paq || [];
@@ -50,7 +54,7 @@
       })();
     </script>
     <!-- End Piwik Code -->
-    
+
   </head>
 
   <body>

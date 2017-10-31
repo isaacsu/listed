@@ -4,7 +4,7 @@ class AuthorsController < ApplicationController
     if params[:id]
       @display_author = Author.find(params[:id])
     elsif request.path.include? "@"
-      username = request.path.gsub("/@", "")
+      username = request.path[/@([^\/]+)/].gsub("@", "")
       @display_author = Author.find_by_username(username)
     end
 
@@ -27,6 +27,14 @@ class AuthorsController < ApplicationController
     @title = "#{@display_author.title}"
     @desc = @display_author.bio || "Via Standard Notes."
   end
+
+  def feed
+    @author = @display_author
+    @posts = @display_author.listed_posts(nil)
+    respond_to do |format|
+     format.rss { render :layout => false }
+    end
+ end
 
   def subscribe
     email = params[:email]
