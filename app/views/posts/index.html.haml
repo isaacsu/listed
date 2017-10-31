@@ -6,5 +6,5 @@
       .posts-links.mt-10
         - day[:posts].each do |post|
           .link
-            %a.block{"href" => "#{post.url}"}
+            %a.block{"href" => "#{post.tokenized_url}"}
               = post.title

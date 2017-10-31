@@ -16,5 +16,5 @@
           - if @author_posts && @author_posts.length > 0
             - @author_posts.each do |tied_post|
               %strong
-                %a.block{"href" => "#{tied_post.url}"}
+                %a.block{"href" => "#{tied_post.author_relative_url}"}
                   = tied_post.title

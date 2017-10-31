@@ -3,8 +3,12 @@ class Post < ApplicationRecord
 
   belongs_to :author
 
-  def url
+  def tokenized_url
     "#{ENV['HOST']}/#{self.token}"
+  end
+
+  def author_relative_url
+    "#{ENV['HOST']}/#{self.path}"
   end
 
   def rendered_text
