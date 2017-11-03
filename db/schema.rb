@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171030232158) do
+ActiveRecord::Schema.define(version: 20171103152017) do
 
   create_table "authors", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "secret"
@@ -48,6 +48,8 @@ ActiveRecord::Schema.define(version: 20171030232158) do
     t.string   "frequency",     default: "daily"
     t.datetime "last_mailing"
     t.boolean  "unsubscribed",  default: false
+    t.datetime "created_at",    default: '2017-11-03 15:23:05', null: false
+    t.datetime "updated_at",    default: '2017-11-03 15:23:05', null: false
     t.index ["author_id"], name: "index_subscriptions_on_author_id", using: :btree
     t.index ["subscriber_id"], name: "index_subscriptions_on_subscriber_id", using: :btree
   end
