@@ -61,7 +61,7 @@ class PostsController < ApplicationController
 
     post.save
 
-    if is_new
+    if is_new && post.unlisted == false
       @author.subscriptions.each do |subscription|
         if subscription.verified == true && subscription.frequency == 'daily' && subscription.unsubscribed == false
           SubscriptionMailer.new_post(post, subscription.subscriber).deliver_later
