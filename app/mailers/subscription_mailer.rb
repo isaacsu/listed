@@ -15,6 +15,7 @@ class SubscriptionMailer < ApplicationMailer
       @weekly_url = "#{ENV['HOST']}/subscriptions/#{subscription.id}/update_frequency?f=weekly&t=#{subscription.token}"
     end
     @post_url = "#{ENV['HOST']}#{post.path}"
+    @rendered_text = post.rendered_text
     mail(to: subscriber.email, subject: "#{post.author.title} published a new post: #{post.title}")
   end
 
