@@ -1,15 +1,16 @@
 .mt-50
-  %h2 Listed
+  %h2
+    %a{"href" => "/"} Listed
   .mt-20
     - if !@secret_url
       Generate a
       %a{"href" => "https://standardnotes.org", "target" => "_blank"} Standard Notes
-      extension url to get started:
+      extension link to get started:
       = form_tag({controller: "authors", action: "create"}, method: "post")
-      %button.black.mt-10{"type" => "submit"} Generate Author Url
+      %button.black.mt-10{"type" => "submit"} Generate Author Link
     - else
       %p
-        install in
+        Install in
         %a{"href" => "https://standardnotes.org", "target" => "_blank"} Standard Notes
-        via extension author url:
+        via extension author link:
       .wrap= @secret_url

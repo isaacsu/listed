@@ -1,8 +1,11 @@
 #footer
   .left
-    %a{"href" => "/"}
+    %a.listed{"href" => "/"}
       %p Listed
+    - if request.path == "/" || request.path == '/usage'
+      %span.links
+        %a{"href" => "/@releases"} Releases Blog
+        %a{"href" => "/@mo"} Editor Blog
   .right
-
     %a.via{"href" => "https://standardnotes.org"}
       %p via Standard Notes
