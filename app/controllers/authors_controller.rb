@@ -77,7 +77,7 @@ class AuthorsController < ApplicationController
         },
         {
           :label => "Open Blog",
-          :url => "#{ENV['HOST']}/authors/#{@author.id}",
+          :url => @author.username && @author.username.length > 0 ? @author.url : "#{ENV['HOST']}/authors/#{@author.id}",
           :verb => "show",
           :context => "Item",
           :content_types => ["Note"],
