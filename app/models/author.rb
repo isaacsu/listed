@@ -3,8 +3,8 @@ class Author < ApplicationRecord
   has_many :subscriptions
   has_many :subscribers, :through => :subscriptions
 
-  validates :username, uniqueness: true, :allow_nil => true
-  validates :email, uniqueness: true, :allow_nil => true
+  validates :username, uniqueness: true, :allow_nil => true, :allow_blank => true
+  validates :email, uniqueness: true, :allow_nil => true, :allow_blank => true
 
   has_many :posts
 
