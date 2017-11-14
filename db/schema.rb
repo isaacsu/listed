@@ -51,7 +51,10 @@ ActiveRecord::Schema.define(version: 20171103152017) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["author_id"], name: "index_subscriptions_on_author_id", using: :btree
+    t.index ["frequency"], name: "index_subscriptions_on_frequency", using: :btree
     t.index ["subscriber_id"], name: "index_subscriptions_on_subscriber_id", using: :btree
+    t.index ["unsubscribed"], name: "index_subscriptions_on_unsubscribed", using: :btree
+    t.index ["verified"], name: "index_subscriptions_on_verified", using: :btree
   end
 
 end

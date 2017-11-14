@@ -16,7 +16,7 @@ class SubscriptionMailer < ApplicationMailer
     end
     @post_url = "#{ENV['HOST']}#{post.path}"
     @rendered_text = post.rendered_text
-    mail(to: subscriber.email, subject: "#{post.author.title} published a new post: #{post.title}")
+    mail(to: subscriber.email, subject: "#{post.author.title} published a new post: #{post.title}", reply_to: post.author.email)
   end
 
   def new_subscription(subscription)
