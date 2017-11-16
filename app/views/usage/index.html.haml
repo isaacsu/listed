@@ -2,12 +2,25 @@
   %h2
     %a{"href" => "/"} Listed
   .mt-20
+    %p
+      Listed is a minimal blogging platform for the casual blogger.
+      It allows you to publish directly from the Standard Notes app, and allows readers to subscribe
+      to new post updates via email.
+    %p
+      Unlike Medium, Listed allows you to own your content source, and have a more direct communication
+      channel with your readers.
+    %p
+      Listed is unopinionated about fonts, widths, and colors, and instead defers to the reader's system settings to
+      provide a familiar experience readers are already accustomed to and comfortable with.
+
+  .mt-40
+    %h3 Get Started
     - if !@secret_url
       Generate a
       %a{"href" => "https://standardnotes.org", "target" => "_blank"} Standard Notes
-      extension link to get started:
+      extension link to get started. Then, install the resulting extension link in the Standard Notes app via the Extensions menu in the lower left corner.
       = form_tag({controller: "authors", action: "create"}, method: "post")
-      %button.black.mt-10{"type" => "submit"} Generate Author Link
+      %button.black.mt-20{"type" => "submit"} Generate Author Link
     - else
       %p
         Install in
