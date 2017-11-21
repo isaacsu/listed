@@ -43,7 +43,13 @@ class PostsController < ApplicationController
       is_new = true
       post = @author.posts.new(post_params)
     else
-      is_new = false
+      # If published previously as unlisted, but now publishing as listed,
+      # we want to count this as a new post.
+      if params[:unlisted] != "true" && post.unlisted == true 
+        is_new = true
+      else
+        is_new = false
+      end
       post.update(post_params)
     end
 
