@@ -18,9 +18,14 @@
       %span
         %a{"href" => "#{@post_url}"} Read on website.
 
+  - if @post.author.email
+    %p
+      %i
+        You can reply to the author by replying directly to this email.
+
 .links-footer{"style" => "margin-bottom: 20px;"}
-  %a{"href" => "#{@unsubscribe_url}"} Unsubscribe
   - if @weekly_url
     %a{"href" => "#{@weekly_url}"} Receive Weekly Updates Instead
+  %a{"href" => "#{@unsubscribe_url}"} Unsubscribe
 
 .bottom-margin-space
